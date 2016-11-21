@@ -1,0 +1,364 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Wed Nov 16 08:23:10 2016
+# Process ID: 8829
+# Current directory: /nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1
+# Command line: vivado
+# Log file: /nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/vivado.log
+# Journal file: /nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /nfs/home/rcarney/vhdl/lab2/shift_register.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/usr/local/software/Xilinx/Vivado/2016.2/data/ip'.
+open_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:21 . Memory (MB): peak = 5776.355 ; gain = 78.586 ; free physical = 1579 ; free virtual = 8948
+update_compile_order -fileset sources_1
+set_property top shift_register [current_fileset]
+update_compile_order -fileset sources_1
+set_property top shift_register_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'shift_register_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+xvhdl -m64 --relax -prj shift_register_tb_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/shift_register.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sim_1/shift_register_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register_tb
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /usr/local/software/Xilinx/Vivado/2016.2/bin/unwrapped/lnx64.o/xelab -wto fd6c638930764bedbda3d0f439d0bea9 --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot shift_register_tb_behav xil_defaultlib.shift_register_tb -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.shift_register [shift_register_default]
+Compiling architecture behavior of entity xil_defaultlib.shift_register_tb
+Built simulation snapshot shift_register_tb_behav
+
+****** Webtalk v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source /nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav/xsim.dir/shift_register_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Nov 16 08:25:07 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "shift_register_tb_behav -key {Behavioral:sim_1:Functional:shift_register_tb} -tclbatch {shift_register_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.2
+Time resolution is 1 ps
+source shift_register_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+xsim: Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 5851.727 ; gain = 40.328 ; free physical = 1541 ; free virtual = 8909
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'shift_register_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:14 . Memory (MB): peak = 5851.727 ; gain = 49.570 ; free physical = 1541 ; free virtual = 8909
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run all
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+run: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 5864.730 ; gain = 10.004 ; free physical = 1431 ; free virtual = 8889
+INFO: [Common 17-344] 'run' was cancelled
+set_property top bit_serial_adder [current_fileset]
+update_compile_order -fileset sources_1
+set_property top bit_serial_adder_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'bit_serial_adder_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+xvhdl -m64 --relax -prj bit_serial_adder_tb_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/mode_control.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity mode_control
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/full_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity full_adder
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/shift_register.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/bit_serial_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity bit_serial_adder
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sim_1/bit_serial_adder_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity bit_serial_adder_tb
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /usr/local/software/Xilinx/Vivado/2016.2/bin/unwrapped/lnx64.o/xelab -wto fd6c638930764bedbda3d0f439d0bea9 --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot bit_serial_adder_tb_behav xil_defaultlib.bit_serial_adder_tb -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.shift_register [shift_register_default]
+Compiling architecture behavioural of entity xil_defaultlib.mode_control [mode_control_default]
+Compiling architecture behavioral of entity xil_defaultlib.full_adder [full_adder_default]
+Compiling architecture behavioural of entity xil_defaultlib.bit_serial_adder [bit_serial_adder_default]
+Compiling architecture behavior of entity xil_defaultlib.bit_serial_adder_tb
+Built simulation snapshot bit_serial_adder_tb_behav
+
+****** Webtalk v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source /nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav/xsim.dir/bit_serial_adder_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Nov 16 08:54:29 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "bit_serial_adder_tb_behav -key {Behavioral:sim_1:Functional:bit_serial_adder_tb} -tclbatch {bit_serial_adder_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.2
+Time resolution is 1 ps
+source bit_serial_adder_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+add_wave: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 5914.352 ; gain = 5.312 ; free physical = 1410 ; free virtual = 8869
+# run 1000ns
+xsim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:13 . Memory (MB): peak = 5914.852 ; gain = 37.238 ; free physical = 1410 ; free virtual = 8869
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'bit_serial_adder_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:19 . Memory (MB): peak = 5914.852 ; gain = 37.238 ; free physical = 1410 ; free virtual = 8869
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run all
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+run: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 5924.855 ; gain = 10.004 ; free physical = 1209 ; free virtual = 8845
+INFO: [Common 17-344] 'run' was cancelled
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run all
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:44 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1271 ; free virtual = 8845
+INFO: [Common 17-344] 'run' was cancelled
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'bit_serial_adder_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+xvhdl -m64 --relax -prj bit_serial_adder_tb_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/mode_control.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity mode_control
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/full_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity full_adder
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/shift_register.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/bit_serial_adder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity bit_serial_adder
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sim_1/bit_serial_adder_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity bit_serial_adder_tb
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /usr/local/software/Xilinx/Vivado/2016.2/bin/unwrapped/lnx64.o/xelab -wto fd6c638930764bedbda3d0f439d0bea9 --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot bit_serial_adder_tb_behav xil_defaultlib.bit_serial_adder_tb -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.shift_register [shift_register_default]
+Compiling architecture behavioural of entity xil_defaultlib.mode_control [mode_control_default]
+Compiling architecture behavioral of entity xil_defaultlib.full_adder [full_adder_default]
+Compiling architecture behavioural of entity xil_defaultlib.bit_serial_adder [bit_serial_adder_default]
+Compiling architecture behavior of entity xil_defaultlib.bit_serial_adder_tb
+Built simulation snapshot bit_serial_adder_tb_behav
+
+****** Webtalk v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source /nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav/xsim.dir/bit_serial_adder_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Nov 16 09:09:33 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "bit_serial_adder_tb_behav -key {Behavioral:sim_1:Functional:bit_serial_adder_tb} -tclbatch {bit_serial_adder_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.2
+Time resolution is 1 ps
+source bit_serial_adder_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+add_wave: Time (s): cpu = 00:00:00.89 ; elapsed = 00:00:06 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1451 ; free virtual = 8854
+# run 1000ns
+xsim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:15 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1451 ; free virtual = 8854
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'bit_serial_adder_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:04 ; elapsed = 00:00:20 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1451 ; free virtual = 8854
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run 10 us
+run: Time (s): cpu = 00:00:00.62 ; elapsed = 00:00:06 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1444 ; free virtual = 8848
+save_wave_config {/nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg}
+add_files -fileset sim_1 -norecurse /nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg
+set_property xsim.view /nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg [get_filesets sim_1]
+set_property top shift_register_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+current_sim simulation_1
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'shift_register_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+xvhdl -m64 --relax -prj shift_register_tb_vhdl.prj
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sources_1/shift_register.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register
+INFO: [VRFC 10-163] Analyzing VHDL file "/nfs/home/rcarney/vhdl/lab2/shift_register.srcs/sim_1/shift_register_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity shift_register_tb
+INFO: [USF-XSim-69] 'compile' step finished in '0' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+Vivado Simulator 2016.2
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /usr/local/software/Xilinx/Vivado/2016.2/bin/unwrapped/lnx64.o/xelab -wto fd6c638930764bedbda3d0f439d0bea9 --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot shift_register_tb_behav xil_defaultlib.shift_register_tb -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.shift_register [shift_register_default]
+Compiling architecture behavior of entity xil_defaultlib.shift_register_tb
+Built simulation snapshot shift_register_tb_behav
+
+****** Webtalk v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source /nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav/xsim.dir/shift_register_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Wed Nov 16 09:31:57 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/nfs/home/rcarney/vhdl/lab2/shift_register.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "shift_register_tb_behav -key {Behavioral:sim_1:Functional:shift_register_tb} -tclbatch {shift_register_tb.tcl} -view {/nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.2
+Time resolution is 1 ps
+open_wave_config /nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg
+WARNING: Simulation object /bit_serial_adder_tb/a was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/b was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/sum was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/clk was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/clk_period was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/PISO_a/shift_in was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/PISO_a/parallel_in was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/PISO_a/serial_out was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/PISO_a/SR_content was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/SIPO/serial_in was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/SIPO/shift_out was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/SIPO/parallel_out was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/SIPO/SR_content was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/mode/shift_in_ctrl was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/mode/shift_out_ctrl was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/mode/reset_ctrl was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/mode/state was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/bit_adder/a_in was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/bit_adder/sum_out was not found in the design.
+WARNING: Simulation object /bit_serial_adder_tb/uut/bit_adder/carry_out was not found in the design.
+source shift_register_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+xsim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:15 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1445 ; free virtual = 8841
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'shift_register_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:21 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1445 ; free virtual = 8841
+run 10 us
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run 10 us
+run: Time (s): cpu = 00:00:00.58 ; elapsed = 00:00:08 . Memory (MB): peak = 5924.855 ; gain = 0.000 ; free physical = 1445 ; free virtual = 8841
+save_wave_config {/nfs/home/rcarney/vhdl/lab2/bit_serial_adder_tb_behav.wcfg}
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 16 09:36:23 2016...
