@@ -52,30 +52,35 @@ begin
 	-- FSM
 	process( clk, state, button )
 	begin
+		if rising_edge( clk ) then
+			case state is
+				when RESET =>
+					reset_counter <= '1';
+					if button = '1' then
+						state <= START;
+					end if;
 
-		case state is
-			when RESET =>
-				reset_counter <= '1';
-				if button = '1' then
-					state <= START;
-				end if;
-
-			when START =>
+				when START =>
 				
-				reset_counter <= '0';
-				enable <= '1';
-				if button = '1' then
-					state <= STOP;
-				end if;
+					reset_counter <= '0';
+					enable <= '1';
+					if button = '1' then
+						state <= STOP;
+					end if;
 		
-			when STOP => 
+				when STOP => 
 				
-				enable <= '0';
-				if button = '1' then
-					state <= RESET;
-				end if;
+					enable <= '0';
+					if button = '1' then
+						state <= RESET;
+					end if;
 
-		end case;
+				when others =>
+
+					state <= RESET;
+
+			end case;
+		end if;
 	end process;
 end behaviour;
 
