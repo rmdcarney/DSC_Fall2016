@@ -37,7 +37,6 @@ architecture Behavioural of bit_serial_adder is
 
 
 	--=== Components in top =====
-	-- DO I NEED THS? TODO for all : 
 
 	-- shift register for serializer/deserializer
 	component shift_register
