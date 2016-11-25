@@ -9,7 +9,7 @@ use IEEE.STD_LOGIC_1164.all;
 entity button_listener_tb is
 end button_listener_tb;
 
-architecture testbecnh of button_listener_tb is
+architecture testbench of button_listener_tb is
 
 	-- Signals
 	signal clk			: STD_LOGIC := '0';

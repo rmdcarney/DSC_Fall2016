@@ -38,14 +38,14 @@ begin
 			when NOT_PRESSED =>
 				
 				output <= '0';
-				-- Button listener is asynchronous
-				if button = '1' then
+				-- Button listener is synchronous
+				if rising_edge( clk ) then
+					if button = '1' then
 					
-				    output <= '1';
-					if rising_edge( clk ) then
+					    output <= '1';
 						state <= PRESSED; -- Clk the state transition to make sure event stays high for at least one clk cycle
+					
 					end if;
-
 				end if;
 			
 			when PRESSED =>
