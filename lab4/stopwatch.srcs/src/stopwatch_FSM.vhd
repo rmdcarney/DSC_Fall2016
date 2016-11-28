@@ -1,5 +1,5 @@
 -----------------------------------------
--- Stopwatch top module
+-- Stopwatch FSM
 ----------------------------------------
 
 library IEEE;
@@ -55,29 +55,25 @@ begin
 		if rising_edge( clk ) then
 			case state is
 				when RESET =>
-					reset_counter <= '1';
 					if button = '1' then
 						state <= START;
+						enable <= '1';
+						reset_counter <= '0';
 					end if;
 
 				when START =>
 				
-					reset_counter <= '0';
-					enable <= '1';
 					if button = '1' then
 						state <= STOP;
+						enable <= '0';
 					end if;
 		
-				when STOP => 
+				when others => 
 				
-					enable <= '0';
 					if button = '1' then
 						state <= RESET;
+						reset_counter <= '1';
 					end if;
-
-				when others =>
-
-					state <= RESET;
 
 			end case;
 		end if;

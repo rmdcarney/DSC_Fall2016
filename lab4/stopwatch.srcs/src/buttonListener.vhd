@@ -34,40 +34,37 @@ begin
 	process( clk, state, button )
 	begin
 
-		case state is
-			when NOT_PRESSED =>
+		if rising_edge( clk ) then
+			case state is
+				when NOT_PRESSED =>
 				
-				output <= '0';
-				-- Button listener is synchronous
-				if rising_edge( clk ) then
-					if button = '1' then
-					
-					    output <= '1';
-						state <= PRESSED; -- Clk the state transition to make sure event stays high for at least one clk cycle
-					
-					end if;
-				end if;
-			
-			when PRESSED =>
-
-				if rising_edge( clk ) then
-					
 					output <= '0';
-					if button = '1' then
-						state <= HELD;
-					else
-						state <= NOT_PRESSED;
+					-- Button listener is synchronous
+						if button = '1' then
+					
+					    	output <= '1';
+							state <= PRESSED; -- Clk the state transition to make sure event stays high for at least one clk cycle
+					
 					end if;
+			
+				when PRESSED =>
 
-				end if;
+					
+						output <= '0';
+						if button = '1' then
+							state <= HELD;
+						else
+							state <= NOT_PRESSED;
+						end if;
 
-			when HELD =>
-
-				if button = '0' then
-					state <= NOT_PRESSED;
-				end if;
-
-		end case;
+	
+				when HELD =>
+	
+						if button = '0' then
+						  state <= NOT_PRESSED;
+					    end if;
+            end case;	
+		end if;
 	end process;
 end behaviour;
 
