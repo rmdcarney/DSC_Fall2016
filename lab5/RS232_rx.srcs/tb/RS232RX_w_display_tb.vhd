@@ -6,26 +6,28 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 
 --tb entity
-entity RS232decoder_tb is
-end RS232decoder_tb;
+entity RS232RX_w_display_tb is
+end RS232RX_w_display_tb;
 
-architecture testbench of RS232decoder_tb is
+architecture testbench of RS232RX_w_display_tb is
 
 	-- Signals
 	signal clk 				: STD_LOGIC := '0';
 	constant clk_period		: time 		:= 10 ns;
 
 	signal serial_in		: STD_LOGIC := '1';
-	signal parallel_out		: STD_LOGIC_VECTOR( 7 downto 0 ) := ( others => '0');
+	signal an				: STD_LOGIC_VECTOR( 3 downto 0 ) := ( others => '0' );
+	signal CA, CB, CC, CD	: STD_LOGIC := '0';
+	signal CE, CF, CG		: STD_LOGIC	:= '0';
 
 	-- uut
-	component RS232_decoder is
-	port(
+	component RS232decoder_withDisplay is
+	port( 
 			clk			: in STD_LOGIC;
 			serial_in	: in STD_LOGIC;
 
-			parallel_out: out STD_LOGIC_VECTOR( 7 downto 0 )
-
+			an			: out STD_LOGIC_VECTOR( 3 downto 0 );
+           	CA, CB, CC, CD, CE, CF, CG : out std_logic
 		);
 	end component;
 
@@ -39,11 +41,18 @@ begin
 	end process;
 
 	-- uut
-	uut : RS232_decoder
+	uut : RS232decoder_withDisplay
 		port map(
 					clk				=> clk,
 					serial_in		=> serial_in,
-					parallel_out	=> parallel_out
+					an				=> an,
+           			CA				=> CA,
+					CB 				=> CB,
+           			CC				=> CC,
+					CD 				=> CD,
+           			CE				=> CE,
+					CF 				=> CF,
+					CG 				=> CG
 		);
 
 	-- Stimulus
