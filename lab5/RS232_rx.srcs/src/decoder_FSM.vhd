@@ -5,8 +5,9 @@
 library IEEE;
 
 use IEEE.STD_LOGIC_1164.all;
-use IEEE.STD_LOGIC_ARITH.all;
-use IEEE.STD_LOGIC_UNSIGNED.all;
+--use IEEE.STD_LOGIC_ARITH.all;
+--use IEEE.STD_LOGIC_UNSIGNED.all;
+use IEEE.NUMERIC_STD.ALL;
 
 -- entity declaration
 entity RS232decoder_FSM is
@@ -50,6 +51,7 @@ begin
 					-- Edge detect start bit
 					if serial_in = '0' then
 						counter_start <= '1'; -- Start counting to reach middle of bit
+						counter_reset <= '0';
 						state <= CENTERING;
 					end if;
 
@@ -68,16 +70,18 @@ begin
 					-- Sample data after 16 counts
 					if counter_in = "1111" then
 							loopIterator := loopIterator + 1;
-							shift_in <= '1';
+							if loopIterator < "1001" then
+								shift_in <= '1';
+							end if;
 					end if;
 					
 					-- Turn off samplign for another 16 clk cycles
-					if counter_in = ( others => '0' ) then 	
+					if counter_in = "0000" then 	
 					 	shift_in <= '0';
 					end if;
 
 					-- Sample for n data bits (n = 8)
-					if loopIterator = "1000" then
+					if loopIterator = "1001" then
 					 	state <= STOP;
 						shift_out <= '1'; -- All data now sampled, so shift out
 					end if;
@@ -85,8 +89,9 @@ begin
 
 				when STOP => 
 					
+					shift_out <= '0';
 					-- Count to halfway through stop bit(s) and then go back to start
-					if counter_in = "1111" then
+					if counter_in = "0111" then
 						counter_reset <= '1';
 						state <= WAIT_FOR_START;
 					end if;

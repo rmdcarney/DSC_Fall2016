@@ -15,8 +15,8 @@ architecture testbench of RS232decoder_FSM_tb is
 	signal clk				: STD_LOGIC := '0';
 	constant clk_period		: time 		:= 10 ns; -- 100 MHz
 
-	signal serial_in		: STD_LOGIC := '0';
-	signal counter_value	: STD_LOGIC_VECTOR( 3 downto 0 ) := '0';
+	signal serial_in		: STD_LOGIC := '1'; -- Active low
+	signal counter_value	: STD_LOGIC_VECTOR( 3 downto 0 ) := ( others => '0');
 
 	signal shift_out		: STD_LOGIC := '0';
 	signal shift_in			: STD_LOGIC := '0';
@@ -39,7 +39,7 @@ architecture testbench of RS232decoder_FSM_tb is
 	end component;
 
 	-- Support
-	component nbit_counter
+	component sync_nbitCounter
 		generic( nbits : integer := 8 ); -- variable number of bits
 		port(
 				reset	: in STD_LOGIC;
@@ -61,11 +61,11 @@ begin
 	end process;
 
 	-- counter
-	counter_4bit : nbit_counter
+	counter_4bit : sync_nbitCounter
 		generic map( nbits => 4 )
 		port map(
 				 	reset			=> counter_reset,
-				 	enable			=> counter_enable,
+				 	enable			=> counter_start,
 					clk 			=> clk,
 					value			=> counter_value
 				);
@@ -90,6 +90,25 @@ begin
 
 		wait for clk_period;
 		wait for clk_period;
+	    	serial_in <= '0'; -- Start bit
+		wait for clk_period*16;
+			serial_in <= '1'; -- 0
+		wait for clk_period*16;
+			serial_in <= '0'; -- 1
+		wait for clk_period*16;
+			serial_in <= '1'; -- 2
+		wait for clk_period*16;
+			serial_in <= '1'; -- 3
+		wait for clk_period*16;
+			serial_in <= '0'; -- 4
+		wait for clk_period*16;
+			serial_in <= '1'; -- 5
+		wait for clk_period*16;
+			serial_in <= '0'; -- 6
+		wait for clk_period*16;
+			serial_in <= '1'; -- 7
+		wait for clk_period*16;
+		wait for clk_period*16;
 		wait;
 	end process;
 end;
