@@ -45,6 +45,7 @@ begin
 					
 					-- Don't count or shift
 					counter_reset <= '1';
+					counter_start <= '0'; 
 					shift_in      <= '0';
 					shift_out      <= '0';
 					
@@ -83,6 +84,7 @@ begin
 					-- Sample for n data bits (n = 8)
 					if loopIterator = "1001" then
 					 	state <= STOP;
+						loopIterator := "0000";
 						shift_out <= '1'; -- All data now sampled, so shift out
 					end if;
 

@@ -24,7 +24,7 @@ entity nbitSIPO_SR is
 
 end nbitSIPO_SR;
 
-architecture arch of SIPO_SR is
+architecture arch of nbitSIPO_SR is
 
     signal SR_content : STD_LOGIC_VECTOR ( (nbits-1) downto 0 ) := ( others => '0' ); -- n+1 bits, to store output state
     
