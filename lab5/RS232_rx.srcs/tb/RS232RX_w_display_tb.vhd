@@ -99,8 +99,12 @@ begin
 		wait for clk_period*16;
 			serial_in <= '1'; -- 7
 		wait for clk_period*16;
+					serial_in <= '0'; -- Give a faulty end bit
+
 		wait for clk_period*16;
-		wait for clk_period;
+							serial_in <= '1'; -- 7
+
+		wait for clk_period*23;
 	    	serial_in <= '0'; -- Start bit
 		wait for clk_period*16;
 			serial_in <= '1'; -- 0
