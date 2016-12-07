@@ -20,8 +20,8 @@ entity RS232decoder_FSM is
 			shift_out		: out STD_LOGIC;
 			shift_in		: out STD_LOGIC;
 			counter_start	: out STD_LOGIC;
-			counter_reset	: out STD_LOGIC
-
+			counter_reset	: out STD_LOGIC;
+			error			: out STD_LOGIC
 		);
 
 end RS232decoder_FSM;
@@ -44,11 +44,12 @@ begin
 				when WAIT_FOR_START =>
 					
 					-- Don't count or shift
-					counter_reset <= '1';
-					counter_start <= '0'; 
-					shift_in      <= '0';
-					shift_out      <= '0';
-					
+					counter_reset 	<= '1';
+					counter_start 	<= '0'; 
+					shift_in      	<= '0';
+					shift_out     	<= '0';
+					error			<= '0'; -- Turn off any error flags from last word
+
 					-- Edge detect start bit
 					if serial_in = '0' then
 						counter_start <= '1'; -- Start counting to reach middle of bit
@@ -92,14 +93,17 @@ begin
 				when STOP => 
 					
 					shift_out <= '0';
+					if serial_in = '0' then-- Incorrect stop bit
+						error <= '1';
+					end if;
 					-- Count to halfway through stop bit(s) and then go back to start
-					if counter_in = "0111" then
+					if counter_in = "0111" then 
 						counter_reset <= '1';
 						state <= WAIT_FOR_START;
 					end if;
 
 				when others =>
-
+					
 					state <= WAIT_FOR_START;
 
 			end case;

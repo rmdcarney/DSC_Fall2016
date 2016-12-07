@@ -15,8 +15,8 @@ entity RS232decoder_withDisplay is
 			serial_in	: in STD_LOGIC;
 
 			an			: out STD_LOGIC_VECTOR( 3 downto 0 );
-           	CA, CB, CC, CD, CE, CF, CG : out std_logic
-
+           	CA, CB, CC, CD, CE, CF, CG : out std_logic;
+			error		: out STD_LOGIC
 		);
 end RS232decoder_withDisplay;
 
@@ -27,7 +27,8 @@ architecture arch of RS232decoder_withDisplay is
 	port(
 			clk 		: in STD_LOGIC;
 			serial_in	: in STD_LOGIC;
-			parallel_out: out STD_LOGIC_VECTOR( 7 downto 0 )
+			parallel_out: out STD_LOGIC_VECTOR( 7 downto 0 );
+			error		: out STD_LOGIC
 		);
 	end component;
 
@@ -52,7 +53,8 @@ begin
 		port map(
 					clk 		=> clk,
 					serial_in	=> serial_in,
-					parallel_out=> decoder_out
+					parallel_out=> decoder_out,
+					error		=> error
 				);
 	
 	display : disp4

@@ -14,8 +14,8 @@ entity RS232_decoder is
 			clk			: in STD_LOGIC;
 			serial_in	: in STD_LOGIC;
 
-			parallel_out: out STD_LOGIC_VECTOR( 7 downto 0 )
-
+			parallel_out: out STD_LOGIC_VECTOR( 7 downto 0 );
+			error		: out STD_LOGIC
 		);
 end RS232_decoder;
 
@@ -31,7 +31,8 @@ architecture arch of RS232_decoder is
 			shift_out		: out STD_LOGIC;
 			shift_in		: out STD_LOGIC;
 			counter_start	: out STD_LOGIC;
-			counter_reset	: out STD_LOGIC
+			counter_reset	: out STD_LOGIC;
+			error			: out STD_LOGIC 
 		);
 	end component;
 
@@ -61,7 +62,7 @@ architecture arch of RS232_decoder is
 	end component;
 
 	-- Signals
-	signal shift_in, shift_out 			: STD_LOGIC := '0';
+	signal shift_in, shift_out         	: STD_LOGIC := '0';
 	signal counter_start, counter_reset : STD_LOGIC := '0';
 	signal counter_value				: STD_LOGIC_VECTOR( 3 downto 0 ) := ( others => '0');
 begin
@@ -76,7 +77,8 @@ begin
 			shift_out		=> shift_out,
 			shift_in		=> shift_in,
 			counter_start	=> counter_start,
-			counter_reset	=> counter_reset
+			counter_reset	=> counter_reset,
+			error           => error
 		);
 					
 	counter : sync_nbitCounter
