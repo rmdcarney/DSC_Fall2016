@@ -61,16 +61,26 @@ architecture arch of RS232_decoder is
 		 );
 	end component;
 
+	-- Clk divider for Baud rate. Hardcoded to decode 9600 bps, 16 clk cycles per byte
+	component clk_divider is
+	port( 
+			clk_100MHz		: in STD_LOGIC;
+			clk_153_6_kHz	: out STD_LOGIC
+		);
+	end component;
+
 	-- Signals
 	signal shift_in, shift_out         	: STD_LOGIC := '0';
 	signal counter_start, counter_reset : STD_LOGIC := '0';
 	signal counter_value				: STD_LOGIC_VECTOR( 3 downto 0 ) := ( others => '0');
+	signal samplingClk					: STD_LOGIC := '0';
+
 begin
 
 	-- Connect ports and signals
 	RS232_RX_FSM : RS232decoder_FSM
 		port map(
-			clk				=> clk,
+			clk				=> samplingClk,
 			serial_in		=> serial_in,
 			counter_in		=> counter_value,
 
@@ -86,7 +96,7 @@ begin
 		port map(
 			reset			=> counter_reset,
 			enable			=> counter_start,
-			clk				=> clk,
+			clk				=> samplingClk,
 
 			value			=> counter_value
 			);
@@ -97,10 +107,15 @@ begin
 			serial_in 		=> serial_in, 	
 			shift_in 		=> shift_in,
            	shift_out 		=> shift_out,	
-			clk 			=> clk,
+			clk 			=> samplingClk,
 
 			-- Single-bit outputs
            	parallel_out 	=> parallel_out
 		 );
 
+	clk100MHz_to_16x9600Hz : clk_divider
+		port map(
+				clk_100MHz		=> clk,
+				clk_153_6_kHz	=> samplingClk
+				);
 end arch;
