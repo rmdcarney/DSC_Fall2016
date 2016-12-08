@@ -10,7 +10,9 @@ use IEEE.STD_LOGIC_SIGNED.all;
 -- entity declaration
 entity signed_nbitCounter is
 
-	generic( nbits : integer := 8 ); -- variable number of bits
+	generic(   nbits : integer := 8; -- variable number of bits
+	           upperBound : signed := "01111111"; -- Use full range of counter by default
+               lowerBound : signed := "10000000");
 	port(
 			reset	: in STD_LOGIC;
 			clk		: in STD_LOGIC;
@@ -23,9 +25,9 @@ end signed_nbitCounter;
 architecture counter_arch of signed_nbitCounter is
 
 	-- Repeat N values of B
-	function repeat(N: natural; B: std_logic) return std_logic_vector
+	function repeat(N: natural; B: std_logic) return signed
 		is
-			variable result: std_logic_vector(1 to N);
+			variable result: signed(1 to N);
 			begin
 				for i in 1 to N loop
 					result(i) := B;
@@ -34,7 +36,7 @@ architecture counter_arch of signed_nbitCounter is
 	end;
 
 	-- The counter will increment with unsigned arithmetic
-	signal counter	: SIGNED( nbits-1 downto 0 ) := ( '1' & signed(repeat(nbits-1,'0'))); -- nbits, at overflow we want reset
+	signal counter	: SIGNED( nbits-1 downto 0 ) := lowerBound; -- nbits, at overflow we want reset
 	
 begin
 
@@ -42,9 +44,13 @@ begin
 	begin
 		if rising_edge( clk ) then
 			if reset = '1' then
-				counter <= ( '1' & signed(repeat(nbits-1,'0'))); -- synchronous reset
+				counter <= lowerBound; -- synchronous reset
 			else
-				counter <= counter + '1';
+				if counter < upperBound then
+						counter <= counter + '1';
+				else
+						counter <= lowerBound;
+				end if;
 			end if;
 		end if;
 	end process;

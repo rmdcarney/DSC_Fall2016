@@ -4,6 +4,8 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
+use IEEE.STD_LOGIC_SIGNED.all;
+use IEEE.STD_LOGIC_ARITH.all;
 
 -- tb entity
 entity signed_nbitCounter_tb is
@@ -28,18 +30,20 @@ architecture testbench of signed_nbitCounter_tb is
 	constant numBits		: integer 	:= 8;
 
 	signal	reset			: STD_LOGIC	:= '0';
-	signal	value			: STD_LOGIC_VECTOR( numBits-1 downto 0 ) := ( '1' & repeat(numBits-1,'0'));
+	signal	value			: STD_LOGIC_VECTOR( numBits-1 downto 0 ) := "10011101";
 
 	-- uut	
 	component signed_nbitCounter 
-	generic( nbits : integer := 8 ); -- variable number of bits
-	port (
+		generic(   nbits : integer := 8; -- variable number of bits
+                   upperBound : signed := "01111111"; -- Use full range of counter by default
+                   lowerBound : signed := "10000000");
+		port (
 			-- inputs
 			reset	: in STD_LOGIC;
 			clk		: in STD_LOGIC;
 
 			value	: out STD_LOGIC_VECTOR( nbits-1 downto 0 )
-	);
+		);
 	end component;
 
 begin 
@@ -53,7 +57,7 @@ begin
 
 	-- uut
 	uut : signed_nbitCounter
-	    generic map( nbits => numBits )
+	    generic map( nbits => numBits, upperBound => "01100100", lowerBound => "10011101" ) -- -100
 		port map( clk => clk, reset => reset, value => value );
 
 	-- Stimulus
