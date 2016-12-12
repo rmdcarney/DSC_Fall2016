@@ -32,9 +32,7 @@ architecture behaviour of clk_divider is
 	signal value			: STD_LOGIC_VECTOR( counter_nbits-1 downto 0 ) := ( others => '0' );
 	signal clkBuffer_I		: STD_LOGIC := '0';
 	signal clkBuffer_O		: STD_LOGIC := '0';
-	signal clk_153_6MHz		: STD_LOGIC := '0';
 	signal reset			: STD_LOGIC := '0';
-	signal locked			: STD_LOGIC := '0';
 		
 	-- nbit counter for clk division
 	component sync_nbitCounter is
@@ -44,15 +42,6 @@ architecture behaviour of clk_divider is
 				reset   : in STD_LOGIC;
 				enable  : in STD_LOGIC;
 				value	: out STD_LOGIC_VECTOR( (nbits-1) downto 0 )
-			);
-	end component;
-
-	-- PLL
-	component PLL_100MHz_to_153DOT6MHz is
-		port(
-				clk_in1	: in STD_LOGIC;
-				clk_out1: out STD_LOGIC;
-				locked	: out STD_LOGIC
 			);
 	end component;
 
@@ -72,27 +61,24 @@ begin
 	--Instantiate sub entities
 	counter : sync_nbitCounter
 		generic map( nbits => counter_nbits )
-		port map( clk => clk_153_6MHz, value => value, reset => reset, enable => '1'  );
+		port map( clk => clk_100MHz, value => value, reset => reset, enable => '1'  );
 
 	clk_buffer : bufg
 		port map( I => clkBuffer_I, O => clkBuffer_O);
 
-	PLL : PLL_100MHz_to_153DOT6MHz
-		port map( clk_in1 => clk_100MHz, clk_out1 => clk_153_6MHz, locked => locked );
 
 	-- Divide the clock
-	process( clk_153_6MHz, value )
+	process( clk_100MHz, value )
 	begin
-		if rising_edge( clk_153_6MHz ) then
-			if locked = '1' then
-				if value < "00111110100" then -- 500
+		if rising_edge( clk_100MHz ) then
+			
+				if value < "0101000110" then -- 500
 					clkBuffer_I <= '1';
 					reset <= '0'; -- Start counter again
-				elsif value < "01111101000" then -- 1000
+				elsif value < "1010001011" then -- 1000
 					clkBuffer_I <= '0';
 				else
 					reset <= '1'; -- Reset counter for correct duty cycle
-				end if;
 			end if;
 		end if;
 	end process;
